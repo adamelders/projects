@@ -1,0 +1,18 @@
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\bin\x86\Debug\XML Reader.exe.config
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\x86\Debug\XML Reader.csprojResolveAssemblyReference.cache
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\x86\Debug\App.g.cs
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\x86\Debug\XML Reader_MarkupCompile.cache
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\x86\Debug\XML Reader_MarkupCompile.lref
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\bin\x86\Debug\XML Reader.exe
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\bin\x86\Debug\XML Reader.pdb
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\bin\x86\Debug\Sfrep.AppraiseIt.Designer.Blend.dll
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\x86\Debug\1.baml
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\x86\Debug\1.g.cs
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\x86\Debug\MainWindow.baml
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\x86\Debug\XML Reader.g.resources
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\x86\Debug\XML_Reader.Properties.Resources.resources
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\x86\Debug\XML Reader.csproj.GenerateResource.Cache
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\x86\Debug\XML Reader.exe
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\x86\Debug\XML Reader.pdb
+C:\Users\Ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\bin\x86\Debug\WPFExtensions.dll

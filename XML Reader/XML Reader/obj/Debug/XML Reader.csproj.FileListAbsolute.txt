@@ -1,0 +1,14 @@
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\bin\Debug\XML Reader.exe.config
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\Debug\XML Reader.csprojResolveAssemblyReference.cache
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\Debug\MainWindow.g.cs
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\Debug\App.g.cs
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\Debug\XML Reader_MarkupCompile.cache
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\Debug\XML Reader_MarkupCompile.lref
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\bin\Debug\XML Reader.exe
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\bin\Debug\XML Reader.pdb
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\Debug\MainWindow.baml
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\Debug\XML Reader.g.resources
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\Debug\XML_Reader.Properties.Resources.resources
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\Debug\XML Reader.csproj.GenerateResource.Cache
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\Debug\XML Reader.exe
+c:\users\ramor\documents\visual studio 2015\Projects\XML Reader\XML Reader\obj\Debug\XML Reader.pdb
