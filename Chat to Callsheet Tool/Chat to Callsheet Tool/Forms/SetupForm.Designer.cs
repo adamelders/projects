@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetupForm));
             this.chatGroupBox = new System.Windows.Forms.GroupBox();
             this.chatResetButton = new System.Windows.Forms.Button();
             this.chatProblemSelectButton = new System.Windows.Forms.Button();
@@ -71,8 +72,15 @@
             this.callsheetCustNameXTextBox = new System.Windows.Forms.TextBox();
             this.callsheetProblemXTextBox = new System.Windows.Forms.TextBox();
             this.callsheetCustNameYTextBox = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.chatGroupBox.SuspendLayout();
             this.callsheetGroupBox.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // chatGroupBox
@@ -92,9 +100,9 @@
             this.chatGroupBox.Controls.Add(this.chatProblemLabel);
             this.chatGroupBox.Controls.Add(this.chatCustNameLabel);
             this.chatGroupBox.Controls.Add(this.chatCustIdLabel);
-            this.chatGroupBox.Location = new System.Drawing.Point(13, 13);
+            this.chatGroupBox.Location = new System.Drawing.Point(13, 31);
             this.chatGroupBox.Name = "chatGroupBox";
-            this.chatGroupBox.Size = new System.Drawing.Size(397, 337);
+            this.chatGroupBox.Size = new System.Drawing.Size(397, 307);
             this.chatGroupBox.TabIndex = 0;
             this.chatGroupBox.TabStop = false;
             this.chatGroupBox.Text = "Chat Window";
@@ -259,9 +267,9 @@
             this.callsheetGroupBox.Controls.Add(this.callsheetCustNameXTextBox);
             this.callsheetGroupBox.Controls.Add(this.callsheetProblemXTextBox);
             this.callsheetGroupBox.Controls.Add(this.callsheetCustNameYTextBox);
-            this.callsheetGroupBox.Location = new System.Drawing.Point(425, 13);
+            this.callsheetGroupBox.Location = new System.Drawing.Point(425, 31);
             this.callsheetGroupBox.Name = "callsheetGroupBox";
-            this.callsheetGroupBox.Size = new System.Drawing.Size(397, 337);
+            this.callsheetGroupBox.Size = new System.Drawing.Size(397, 307);
             this.callsheetGroupBox.TabIndex = 1;
             this.callsheetGroupBox.TabStop = false;
             this.callsheetGroupBox.Text = "Callsheet Window";
@@ -400,7 +408,7 @@
             // 
             // callsheetResetButton
             // 
-            this.callsheetResetButton.Location = new System.Drawing.Point(132, 286);
+            this.callsheetResetButton.Location = new System.Drawing.Point(132, 250);
             this.callsheetResetButton.Name = "callsheetResetButton";
             this.callsheetResetButton.Size = new System.Drawing.Size(133, 45);
             this.callsheetResetButton.TabIndex = 15;
@@ -525,20 +533,79 @@
             this.callsheetCustNameYTextBox.Size = new System.Drawing.Size(100, 20);
             this.callsheetCustNameYTextBox.TabIndex = 18;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(834, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem,
+            this.helpToolStripMenuItem,
+            this.exitToolStripMenuItem,
+            this.exitToolStripMenuItem1});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "About";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem1
+            // 
+            this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem1.Text = "Exit";
+            this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
+            // 
             // SetupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 359);
+            this.ClientSize = new System.Drawing.Size(834, 346);
             this.Controls.Add(this.callsheetGroupBox);
             this.Controls.Add(this.chatGroupBox);
+            this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "SetupForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SetupForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SetupForm_FormClosing);
+            this.Load += new System.EventHandler(this.SetupForm_Load);
             this.chatGroupBox.ResumeLayout(false);
             this.chatGroupBox.PerformLayout();
             this.callsheetGroupBox.ResumeLayout(false);
             this.callsheetGroupBox.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -592,5 +659,11 @@
         private System.Windows.Forms.Label callsheetInProgressLabel;
         private System.Windows.Forms.TextBox callsheetInProgressYTextBox;
         private System.Windows.Forms.TextBox callsheetInProgressXTextBox;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
     }
 }

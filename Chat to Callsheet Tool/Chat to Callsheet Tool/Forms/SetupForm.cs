@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Chat_to_Callsheet_Tool.Properties;
 using Gma.System.MouseKeyHook;
 
 namespace Chat_to_Callsheet_Tool {
@@ -277,6 +278,103 @@ namespace Chat_to_Callsheet_Tool {
             // Set X and Y coordinates as the mouse moves.
             callsheetResetXTextBox.Text = e.X.ToString();
             callsheetResetYTextBox.Text = e.Y.ToString();
+        }
+
+        private void SaveSettings() {
+
+            // Set all coordinates to Settings.
+            Settings.Default.ChatCustIdX = chatCustIdXTextBox.Text;
+            Settings.Default.ChatCustIdY = chatCustIdYTextBox.Text;
+
+            Settings.Default.ChatCustNameX = chatCustNameXTextBox.Text;
+            Settings.Default.ChatCustNameY = chatCustNameYTextBox.Text;
+
+            Settings.Default.ChatProblemX = chatProblemXTextBox.Text;
+            Settings.Default.ChatProblemY = chatProblemYTextBox.Text;
+
+            Settings.Default.CallsheetCustIdX = callsheetCustIdXTextBox.Text;
+            Settings.Default.CallsheetCustIdY = callsheetCustIdYTextBox.Text;
+
+            Settings.Default.CallsheetCustNameX = callsheetCustNameXTextBox.Text;
+            Settings.Default.CallsheetCustNameY = callsheetCustNameYTextBox.Text;
+
+            Settings.Default.CallsheetInProgressX = callsheetInProgressXTextBox.Text;
+            Settings.Default.CallsheetInProgressY = callsheetInProgressYTextBox.Text;
+
+            Settings.Default.CallsheetNewX = callsheetNewXTextBox.Text;
+            Settings.Default.CallsheetNewY = callsheetNewYTextBox.Text;
+
+            Settings.Default.CallsheetProblemX = callsheetProblemXTextBox.Text;
+            Settings.Default.CallsheetProblemY = callsheetProblemYTextBox.Text;
+
+            Settings.Default.CallsheetResetX = callsheetResetXTextBox.Text;
+            Settings.Default.CallsheetResetY = callsheetResetYTextBox.Text;
+
+            Settings.Default.CallsheetSaveX = callsheetSaveXTextBox.Text;
+            Settings.Default.CallsheetSaveY = callsheetSaveYTextBox.Text;
+
+            // Save settings.
+            Settings.Default.Save();
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e) {
+            this.Close();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
+            SaveSettings();
+        }
+
+        private void SetupForm_Load(object sender, EventArgs e) {
+
+            // Load coordinates from Settings.
+            chatCustIdXTextBox.Text = Settings.Default.ChatCustIdX;
+            chatCustIdYTextBox.Text = Settings.Default.ChatCustIdY;
+
+            chatCustNameXTextBox.Text = Settings.Default.ChatCustNameX;
+            chatCustNameYTextBox.Text = Settings.Default.ChatCustNameY;
+
+            chatProblemXTextBox.Text = Settings.Default.ChatProblemX;
+            chatProblemYTextBox.Text = Settings.Default.ChatProblemY;
+
+            callsheetCustIdXTextBox.Text = Settings.Default.CallsheetCustIdX;
+            callsheetCustIdYTextBox.Text = Settings.Default.CallsheetCustIdY;
+
+            callsheetCustNameXTextBox.Text = Settings.Default.CallsheetCustNameX;
+            callsheetCustNameYTextBox.Text = Settings.Default.CallsheetCustNameY;
+
+            callsheetInProgressXTextBox.Text = Settings.Default.CallsheetInProgressX;
+            callsheetInProgressYTextBox.Text = Settings.Default.CallsheetInProgressY;
+
+            callsheetNewXTextBox.Text = Settings.Default.CallsheetNewX;
+            callsheetNewYTextBox.Text = Settings.Default.CallsheetNewY;
+
+            callsheetProblemXTextBox.Text = Settings.Default.CallsheetProblemX;
+            callsheetProblemYTextBox.Text = Settings.Default.CallsheetProblemY;
+
+            callsheetResetXTextBox.Text = Settings.Default.CallsheetResetX;
+            callsheetResetYTextBox.Text = Settings.Default.CallsheetResetY;
+
+            callsheetSaveXTextBox.Text = Settings.Default.CallsheetSaveX;
+            callsheetSaveYTextBox.Text = Settings.Default.CallsheetSaveY;
+        }
+
+        // Save settings when the Setup form closes.
+        private void SetupForm_FormClosing(object sender, FormClosingEventArgs e) {
+            SaveSettings();
+        }
+
+        // Show the About form.
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
+            using (AboutForm aboutForm = new AboutForm()) {
+                aboutForm.ShowDialog(this);
+            }
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e) {
+            using (HelpForm helpForm = new HelpForm()) {
+                helpForm.ShowDialog(this);
+            }
         }
     }
 }

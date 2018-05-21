@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.chatToCallsheetButton = new System.Windows.Forms.Button();
             this.chatToCallsheetHotkeyButton = new System.Windows.Forms.Button();
             this.convertChatToCallHotkeyButton = new System.Windows.Forms.Button();
@@ -86,8 +87,11 @@
             this.Controls.Add(this.convertChatToCallButton);
             this.Controls.Add(this.chatToCallsheetHotkeyButton);
             this.Controls.Add(this.chatToCallsheetButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Chat to Callsheet Tool";
             this.ResumeLayout(false);
 
         }
