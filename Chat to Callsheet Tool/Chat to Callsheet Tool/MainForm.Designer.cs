@@ -74,6 +74,7 @@
             this.setupButton.TabIndex = 4;
             this.setupButton.Text = "Setup";
             this.setupButton.UseVisualStyleBackColor = true;
+            this.setupButton.Click += new System.EventHandler(this.setupButton_Click);
             // 
             // MainForm
             // 

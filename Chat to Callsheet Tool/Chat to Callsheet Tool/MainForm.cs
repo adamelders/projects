@@ -13,5 +13,12 @@ namespace Chat_to_Callsheet_Tool {
         public MainForm() {
             InitializeComponent();
         }
+
+        private void setupButton_Click(object sender, EventArgs e) {
+
+            using (SetupForm setupForm = new SetupForm()) {
+                setupForm.ShowDialog(this);
+            }
+        }
     }
 }
