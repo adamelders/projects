@@ -5,5 +5,9 @@ namespace Chat_to_Callsheet_Tool {
         public AboutForm() {
             InitializeComponent();
         }
+
+        private void closeButton_Click(object sender, System.EventArgs e) {
+            this.Close();
+        }
     }
 }
