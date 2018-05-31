@@ -56,10 +56,10 @@
     <Setting Name="CallsheetNewY" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="CallsheetResetX" Type="System.String" Scope="User">
+    <Setting Name="CallsheetResultX" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="CallsheetResetY" Type="System.String" Scope="User">
+    <Setting Name="CallsheetResultY" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

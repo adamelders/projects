@@ -242,24 +242,24 @@ namespace Chat_to_Callsheet_Tool.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string CallsheetResetX {
+        public string CallsheetResultX {
             get {
-                return ((string)(this["CallsheetResetX"]));
+                return ((string)(this["CallsheetResultX"]));
             }
             set {
-                this["CallsheetResetX"] = value;
+                this["CallsheetResultX"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string CallsheetResetY {
+        public string CallsheetResultY {
             get {
-                return ((string)(this["CallsheetResetY"]));
+                return ((string)(this["CallsheetResultY"]));
             }
             set {
-                this["CallsheetResetY"] = value;
+                this["CallsheetResultY"] = value;
             }
         }
     }

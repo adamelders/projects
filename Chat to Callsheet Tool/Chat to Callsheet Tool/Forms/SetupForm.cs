@@ -69,8 +69,8 @@ namespace Chat_to_Callsheet_Tool {
             Subscribe("callsheetNewSelectButton");
         }
 
-        private void callsheetResetSelectButton_Click(object sender, EventArgs e) {
-            Subscribe("callsheetResetSelectButton");
+        private void callsheetResultSelectButton_Click(object sender, EventArgs e) {
+            Subscribe("callsheetResultSelectButton");
         }
 
         private void callsheetResetButton_Click(object sender, EventArgs e) {
@@ -97,8 +97,8 @@ namespace Chat_to_Callsheet_Tool {
             callsheetNewXTextBox.Text = "";
             callsheetNewYTextBox.Text = "";
 
-            callsheetResetXTextBox.Text = "";
-            callsheetResetYTextBox.Text = "";
+            callsheetResultXTextBox.Text = "";
+            callsheetResultYTextBox.Text = "";
         }
 
         private void Subscribe(string control) {
@@ -142,8 +142,8 @@ namespace Chat_to_Callsheet_Tool {
                 case "callsheetNewSelectButton":
                     globalHook.MouseMove += CallsheetNew_MouseMove;
                     break;
-                case "callsheetResetSelectButton":
-                    globalHook.MouseMove += CallsheetReset_MouseMove;
+                case "callsheetResultSelectButton":
+                    globalHook.MouseMove += CallsheetResult_MouseMove;
                     break;
                 default:
                     break;
@@ -191,7 +191,7 @@ namespace Chat_to_Callsheet_Tool {
                         globalHook.MouseMove -= CallsheetNew_MouseMove;
                         break;
                     case "callsheetResetSelectButton":
-                        globalHook.MouseMove -= CallsheetReset_MouseMove;
+                        globalHook.MouseMove -= CallsheetResult_MouseMove;
                         break;
                     default:
                         break;
@@ -273,11 +273,11 @@ namespace Chat_to_Callsheet_Tool {
             callsheetNewYTextBox.Text = e.Y.ToString();
         }
 
-        private void CallsheetReset_MouseMove(object sender, MouseEventArgs e) {
+        private void CallsheetResult_MouseMove(object sender, MouseEventArgs e) {
 
             // Set X and Y coordinates as the mouse moves.
-            callsheetResetXTextBox.Text = e.X.ToString();
-            callsheetResetYTextBox.Text = e.Y.ToString();
+            callsheetResultXTextBox.Text = e.X.ToString();
+            callsheetResultYTextBox.Text = e.Y.ToString();
         }
 
         private void SaveSettings() {
@@ -307,8 +307,8 @@ namespace Chat_to_Callsheet_Tool {
             Settings.Default.CallsheetProblemX = callsheetProblemXTextBox.Text;
             Settings.Default.CallsheetProblemY = callsheetProblemYTextBox.Text;
 
-            Settings.Default.CallsheetResetX = callsheetResetXTextBox.Text;
-            Settings.Default.CallsheetResetY = callsheetResetYTextBox.Text;
+            Settings.Default.CallsheetResultX = callsheetResultXTextBox.Text;
+            Settings.Default.CallsheetResultY = callsheetResultYTextBox.Text;
 
             Settings.Default.CallsheetSaveX = callsheetSaveXTextBox.Text;
             Settings.Default.CallsheetSaveY = callsheetSaveYTextBox.Text;
@@ -352,8 +352,8 @@ namespace Chat_to_Callsheet_Tool {
             callsheetProblemXTextBox.Text = Settings.Default.CallsheetProblemX;
             callsheetProblemYTextBox.Text = Settings.Default.CallsheetProblemY;
 
-            callsheetResetXTextBox.Text = Settings.Default.CallsheetResetX;
-            callsheetResetYTextBox.Text = Settings.Default.CallsheetResetY;
+            callsheetResultXTextBox.Text = Settings.Default.CallsheetResultX;
+            callsheetResultYTextBox.Text = Settings.Default.CallsheetResultY;
 
             callsheetSaveXTextBox.Text = Settings.Default.CallsheetSaveX;
             callsheetSaveYTextBox.Text = Settings.Default.CallsheetSaveY;
