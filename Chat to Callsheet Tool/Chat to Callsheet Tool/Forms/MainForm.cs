@@ -1,13 +1,63 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Media;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using Chat_to_Callsheet_Tool.Properties;
+using Gma.System.MouseKeyHook;
 
 namespace Chat_to_Callsheet_Tool {
     public partial class MainForm : Form {
         public MainForm() {
             InitializeComponent();
+        }
+
+        // Hotkey for Chat to Callsheet button
+        private string chatToCallsheetHotkey;
+
+        // Hotkey for Convert Chat to Call button
+        private string convertChatToCallHotkey;
+
+        // Actions and definitions for pressing buttons.
+        private Action chatToCallsheet_Action;
+        private Action convertChatToCall_Action;
+
+        private void chatToCallsheet_Execute() {
+            chatToCallsheetButton.PerformClick();
+        }
+
+        private void convertChatToCall_Execute() {
+            convertChatToCallButton.PerformClick();
+        }
+
+        // Start listening for mouse/key events globally.
+        private void Subscribe() {
+
+            // Make sure nothing else is listening for hotkeys.
+            Unsubscribe();
+
+            // Create new key combinations and assign the Actions to click the buttons.
+            Combination chatToCallsheet_KeyCombo = Combination.FromString(chatToCallsheetHotkey);
+            Combination convertChatToCall_KeyCombo = Combination.FromString(convertChatToCallHotkey);
+            chatToCallsheet_Action = chatToCallsheet_Execute;
+            convertChatToCall_Action = convertChatToCall_Execute;
+
+            // Assign actions to key combinations.
+            Dictionary<Combination, Action> assignment = new Dictionary<Combination, Action> {
+                { chatToCallsheet_KeyCombo, chatToCallsheet_Action },
+                { convertChatToCall_KeyCombo, convertChatToCall_Action }
+            };
+
+            // Install listener.
+            Hook.GlobalEvents().OnCombination(assignment);
+        }
+
+        // Stop listening for mouse/key events globally.
+        private void Unsubscribe() {
+
+            Hook.GlobalEvents().Dispose();
         }
 
         // Starting mouse position, so we can restore after the macro.
@@ -23,9 +73,9 @@ namespace Chat_to_Callsheet_Tool {
         private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
         private const int MOUSEEVENTF_RIGHTUP = 0x10;
 
-        // Mouse event from user32.dll to handle clicks.
+        // Import mouse event from user32.dll to handle clicks.
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
+        private static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
 
         // Move the mouse to specified X, Y coordinates (set in Setup form).
         private void MoveMouse(int xPos, int yPos) => Cursor.Position = new System.Drawing.Point(xPos, yPos);
@@ -38,12 +88,14 @@ namespace Chat_to_Callsheet_Tool {
 
         // Send Copy command (Ctrl + C) keystroke.
         private void SendCopy() {
-            SendKeys.Send("^C");
+            SendKeys.Send("^a"); // Select all
+            Thread.Sleep(100);
+            SendKeys.Send("^c"); // Copy
         }
 
         // Send Paste command (Ctrl + P) keystroke.
         private void SendPaste() {
-            SendKeys.Send("^V");
+            SendKeys.Send("^v"); // Paste
         }
 
         // We have to assume that "Copy current cell" option is below and slightly to the right.
@@ -52,9 +104,9 @@ namespace Chat_to_Callsheet_Tool {
         private void CompensateForCopyCell(int xPos, int yPos, out int newXPos, out int newYPos) {
 
             // Add/subtract to xPos
-            newXPos = xPos < 0 ? xPos + 38 : xPos - 38;
+            newXPos = xPos + 38;
             // Add/subtract to yPos
-            newYPos = yPos > 0 ? yPos + 11 : yPos - 11;
+            newYPos = yPos + 11;
         }
 
         // Tries to parse the X, Y coordinates from Settings as Int32.
@@ -104,6 +156,9 @@ namespace Chat_to_Callsheet_Tool {
                 // Customer ID
                 if (TryParseSettingCoords("ChatCustId", out int chatCustIdX, out int chatCustIdY)) {
 
+                    // Wait a bit before we start, to make sure the user isn't still holding a modifier key.
+                    Thread.Sleep(500);
+
                     // Move to Customer box.
                     MoveMouse(chatCustIdX, chatCustIdY);
                     PerformLeftClick();
@@ -116,11 +171,8 @@ namespace Chat_to_Callsheet_Tool {
                     MoveMouse(copyXPos, copyYPos);
                     PerformLeftClick();
                     Thread.Sleep(300);
-
-                    // Save clipboard text as customer ID.
-                    //customerId = Clipboard.GetText();
-                    //DEBUG
-                    customerId = "914492";
+                    customerId = ClipboardHelper.GetText();
+                    Thread.Sleep(300);
                 }
                 else {
                     ShowSettingError();
@@ -142,9 +194,8 @@ namespace Chat_to_Callsheet_Tool {
                     MoveMouse(copyXPos, copyYPos);
                     PerformLeftClick();
                     Thread.Sleep(300);
-
-                    // Save clipboard text as customer name.
-                    customerName = Clipboard.GetText();
+                    customerName = ClipboardHelper.GetText();
+                    Thread.Sleep(300);
                 }
                 else {
                     ShowSettingError();
@@ -166,9 +217,8 @@ namespace Chat_to_Callsheet_Tool {
                     MoveMouse(copyXPos, copyYPos);
                     PerformLeftClick();
                     Thread.Sleep(300);
-
-                    // Save clipboard text as customer problem/question.
-                    question = Clipboard.GetText();
+                    question = ClipboardHelper.GetText();
+                    Thread.Sleep(300);
                 }
                 else {
                     ShowSettingError();
@@ -196,11 +246,13 @@ namespace Chat_to_Callsheet_Tool {
                     // Move to Cust ID box.
                     MoveMouse(callCustIdX, callCustIdY);
                     PerformLeftClick();
+                    Thread.Sleep(300);
 
-                    // Set Clipboard data.
-                    Clipboard.Clear();
-                    Clipboard.SetText(customerId);
-                    Thread.Sleep(300); // Make sure we don't paste before clipboard data is set.
+                    // If empty or null text is selected, clear the clipboard first.
+                    if (string.IsNullOrEmpty(customerId))
+                        ClipboardHelper.Clear();
+                    else
+                        ClipboardHelper.SetText(customerId);
 
                     // Paste customer ID.
                     SendPaste();
@@ -217,11 +269,13 @@ namespace Chat_to_Callsheet_Tool {
                     // Move to Customer box.
                     MoveMouse(callCustNameX, callCustNameY);
                     PerformLeftClick();
+                    Thread.Sleep(300);
 
-                    // Set Clipboard data.
-                    Clipboard.Clear();
-                    Clipboard.SetText(customerName);
-                    Thread.Sleep(300); // Make sure we don't paste before clipboard data is set.
+                    // If empty or null text is selected, clear the clipboard first.
+                    if (string.IsNullOrEmpty(customerName))
+                        ClipboardHelper.Clear();
+                    else
+                        ClipboardHelper.SetText(customerName);
 
                     // Paste customer name.
                     SendPaste();
@@ -238,13 +292,15 @@ namespace Chat_to_Callsheet_Tool {
                     // Move to Problem box.
                     MoveMouse(callProblemX, callProblemY);
                     PerformLeftClick();
+                    Thread.Sleep(300);
 
-                    // Set Clipboard data.
-                    Clipboard.Clear();
-                    Clipboard.SetText(question);
-                    Thread.Sleep(300); // Make sure we don't paste before clipboard data is set.
+                    // If empty or null text is selected, clear the clipboard first.
+                    if (string.IsNullOrEmpty(question))
+                        ClipboardHelper.Clear();
+                    else
+                        ClipboardHelper.SetText(question);
 
-                    // Paste customer problem.
+                    // Paste question/problem.
                     SendPaste();
                     Thread.Sleep(300);
                 }
@@ -304,8 +360,17 @@ namespace Chat_to_Callsheet_Tool {
                 // Move the mouse back to initial position.
                 Cursor.Position = new System.Drawing.Point(mouseStartPosX, mouseStartPosY);
 
+                // Play a beep to signal completion.
+                SystemSounds.Beep.Play();
+
                 // Reset chat data.
                 Reset();
+            }
+            catch (ExternalException ex) {
+                if (ex.Message.Contains("Requested Clipboard operation did not succeed"))
+                    MessageBox.Show("A clipboard operation has failed (thanks, Chrome)." +
+                        Environment.NewLine + Environment.NewLine +
+                        "Please try again.");
             }
             
             // This is only for debugging purposes and will be removed once testing is complete.
@@ -315,17 +380,271 @@ namespace Chat_to_Callsheet_Tool {
             }
         }
 
+        // Convert Chat to Call button handler
+
+        private void convertChatToCallButton_Click(object sender, EventArgs e) {
+
+            try {
+                // Get current mouse position, so we can restore it later.
+                mouseStartPosX = Cursor.Position.X;
+                mouseStartPosY = Cursor.Position.Y;
+
+                // First, we need to get the chat info from the callsheet. This ensures we always have up-to-date information,
+                // rather than using the chat data we get from the Chat to Callsheet button.
+                if (TryParseSettingCoords("CallsheetCustId", out int callCustIdX, out int callCustIdY)) {
+
+                    // Wait a bit before we start, to make sure the user isn't still holding a modifier key.
+                    Thread.Sleep(1000);
+
+                    // Move to Cust ID and copy data.
+                    MoveMouse(callCustIdX, callCustIdY);
+                    PerformLeftClick();
+                    Thread.Sleep(300);
+                    SendCopy();
+                    Thread.Sleep(300);
+                    customerId = ClipboardHelper.GetText();
+                    Thread.Sleep(300);
+                }
+                else {
+                    ShowSettingError();
+                    return;
+                }
+
+                // Customer Name
+                if (TryParseSettingCoords("CallsheetCustName", out int callCustNameX, out int callCustNameY)) {
+
+                    // Move to Customer and copy data.
+                    MoveMouse(callCustNameX, callCustNameY);
+                    PerformLeftClick();
+                    Thread.Sleep(300);
+                    SendCopy();
+                    Thread.Sleep(300);
+                    customerName = ClipboardHelper.GetText();
+                    Thread.Sleep(300);
+                }
+                else {
+                    ShowSettingError();
+                    return;
+                }
+
+                // Problem/Query
+                if (TryParseSettingCoords("CallsheetProblem", out int callProblemX, out int callProblemY)) {
+
+                    // Move to Problem and copy data.
+                    MoveMouse(callProblemX, callProblemY);
+                    PerformLeftClick();
+                    Thread.Sleep(300);
+                    SendCopy();
+                    Thread.Sleep(300);
+                    question = ClipboardHelper.GetText();
+                    Thread.Sleep(300);
+                }
+                else {
+                    ShowSettingError();
+                    return;
+                }
+
+                // Next, click "New" or "Reset Form" so we have an empty form.
+                if (TryParseSettingCoords("CallsheetNew", out int callNewX, out int callNewY)) {
+
+                    // Move to New and click.
+                    MoveMouse(callNewX, callNewY);
+                    PerformLeftClick();
+                    Thread.Sleep(1500); // Wait for callsheet to refresh with new call form.
+                }
+                else {
+                    ShowSettingError();
+                    return;
+                }
+
+                // Paste in the chat data.
+
+                // Customer ID
+                if (TryParseSettingCoords("CallsheetCustId", out callCustIdX, out callCustIdY)) {
+
+                    // Move to Cust ID and paste.
+                    MoveMouse(callCustIdX, callCustIdY);
+                    PerformLeftClick();
+                    Thread.Sleep(300);
+
+                    // If empty or null text is selected, clear the clipboard first.
+                    if (string.IsNullOrEmpty(customerId))
+                        ClipboardHelper.Clear();
+                    else
+                        ClipboardHelper.SetText(customerId);
+
+                    // Paste customer ID.
+                    SendPaste();
+                    Thread.Sleep(300);
+                }
+                else {
+                    ShowSettingError();
+                    return;
+                }
+
+                // Customer Name
+                if (TryParseSettingCoords("CallsheetCustName", out callCustNameX, out callCustNameY)) {
+
+                    // Move to Customer and paste.
+                    //MoveMouse(callCustNameX, callCustNameY);
+                    SendKeys.Send("{TAB}");
+                    Thread.Sleep(300);
+
+                    // If empty or null text is selected, clear the clipboard first.
+                    if (string.IsNullOrEmpty(customerName))
+                        ClipboardHelper.Clear();
+                    else
+                        ClipboardHelper.SetText(customerName);
+
+                    // Paste customer name.
+                    SendPaste();
+                    Thread.Sleep(300);
+                }
+                else {
+                    ShowSettingError();
+                    return;
+                }
+
+                // Problem
+                if (TryParseSettingCoords("CallsheetProblem", out callProblemX, out callProblemY)) {
+
+                    // Add text to problem.
+                    question = "From chat - " + question;
+
+                    // Move to Problem and paste.
+                    MoveMouse(callProblemX, callProblemY);
+                    PerformLeftClick();
+
+                    // If empty or null text is selected, clear the clipboard first.
+                    if (string.IsNullOrEmpty(question))
+                        ClipboardHelper.Clear();
+                    else
+                        ClipboardHelper.SetText(question);
+
+                    // Paste customer ID.
+                    SendPaste();
+                    Thread.Sleep(300);
+                }
+                else {
+                    ShowSettingError();
+                    return;
+                }
+
+                // Now change result to "call", and Save. In Progress is automatically set.
+                if (TryParseSettingCoords("CallsheetResult", out int callResultX, out int callResultY)) {
+
+                    // Move to Result, click, choose "call".
+                    MoveMouse(callResultX, callResultY);
+                    PerformLeftClick();
+                    Thread.Sleep(150);
+                    SendKeys.Send("C");
+                    Thread.Sleep(150);
+                    SendKeys.Send("{ENTER}");
+                    Thread.Sleep(300);
+                }
+                else {
+                    ShowSettingError();
+                    return;
+                }
+
+                // Save call.
+                if (TryParseSettingCoords("CallsheetSave", out int callSaveX, out int callSaveY)) {
+
+                    // Move to Save and click.
+                    MoveMouse(callSaveX, callSaveY);
+                    PerformLeftClick();
+                    Thread.Sleep(300);
+                }
+                else {
+                    ShowSettingError();
+                    return;
+                }
+
+                // Move the mouse back to initial position.
+                Cursor.Position = new System.Drawing.Point(mouseStartPosX, mouseStartPosY);
+
+                // Play a beep to signal completion.
+                SystemSounds.Beep.Play();
+
+                // Reset chat data.
+                Reset();
+            }
+            catch (ExternalException ex) {
+                if (ex.Message.Contains("Requested Clipboard operation did not succeed"))
+                    MessageBox.Show("A clipboard operation has failed (thanks, Chrome)." +
+                        Environment.NewLine + Environment.NewLine +
+                        "Please try again.");
+            }
+
+            // This is only for debugging purposes and will be removed once testing is complete.
+            catch (Exception ex) {
+                MessageBox.Show(ex.ToString());
+                this.Close();
+            }
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e) {
+
+            // If the form is minimized, we need to minize it to the system tray.
+            //if (this.WindowState == FormWindowState.Minimized) {
+            //    this.Hide();
+            //    notifyIcon.Visible = true;
+            //}
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e) {
+
+            // Show the form if it is minimized to the tray.
+            //this.Show();
+            //this.WindowState = FormWindowState.Normal;
+            //notifyIcon.Visible = false;
+        }
+
         private void setupButton_Click(object sender, EventArgs e) {
 
             using (SetupForm setupForm = new SetupForm()) {
                 setupForm.ShowDialog(this);
             }
+
+            // Make sure the hotkeys get registered again. When the global hook is
+            // unregistered from the Setup menu, the hotkeys also get unregistered.
+            this.Subscribe();
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e) {
             using (HelpForm helpForm = new HelpForm()) {
                 helpForm.ShowDialog(this);
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e) {
+
+            // Load hotkeys from settings.
+            this.chatToCallsheetHotkey = Settings.Default.ChatToCallsheetHotkey;
+            this.convertChatToCallHotkey = Settings.Default.ConvertChatToCallHotkey;
+
+            // DEBUG: Manually set hotkeys.
+            if (this.chatToCallsheetHotkey.Length == 0)
+                chatToCallsheetHotkey = "Control+Alt+F1";
+            if (this.convertChatToCallHotkey.Length == 0)
+                convertChatToCallHotkey = "Control+Alt+F2";
+
+            // Clear the clipboard before starting, so we don't paste previous data.
+            ClipboardHelper.Clear();
+
+            // Register global hook listener.
+            this.Subscribe();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e) {
+
+            // Stop listening for keys.
+            this.Unsubscribe();
+
+            // Save hotkey settings on exit.
+            Settings.Default.ChatToCallsheetHotkey = this.chatToCallsheetHotkey;
+            Settings.Default.ConvertChatToCallHotkey = this.convertChatToCallHotkey;
+            Settings.Default.Save();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {

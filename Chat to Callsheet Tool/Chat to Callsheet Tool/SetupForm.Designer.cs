@@ -23,7 +23,6 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetupForm));
             this.chatGroupBox = new System.Windows.Forms.GroupBox();
             this.chatResetButton = new System.Windows.Forms.Button();
             this.chatProblemSelectButton = new System.Windows.Forms.Button();
@@ -45,10 +44,10 @@
             this.callsheetInProgressLabel = new System.Windows.Forms.Label();
             this.callsheetInProgressYTextBox = new System.Windows.Forms.TextBox();
             this.callsheetInProgressXTextBox = new System.Windows.Forms.TextBox();
-            this.callsheetResultSelectButton = new System.Windows.Forms.Button();
-            this.callsheetResultLabel = new System.Windows.Forms.Label();
-            this.callsheetResultYTextBox = new System.Windows.Forms.TextBox();
-            this.callsheetResultXTextBox = new System.Windows.Forms.TextBox();
+            this.callsheetResetSelectButton = new System.Windows.Forms.Button();
+            this.callsheetResetLabel = new System.Windows.Forms.Label();
+            this.callsheetResetYTextBox = new System.Windows.Forms.TextBox();
+            this.callsheetResetXTextBox = new System.Windows.Forms.TextBox();
             this.callsheetNewSelectButton = new System.Windows.Forms.Button();
             this.callsheetNewLabel = new System.Windows.Forms.Label();
             this.callsheetNewYTextBox = new System.Windows.Forms.TextBox();
@@ -74,10 +73,9 @@
             this.callsheetCustNameYTextBox = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.chatGroupBox.SuspendLayout();
             this.callsheetGroupBox.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -100,9 +98,9 @@
             this.chatGroupBox.Controls.Add(this.chatProblemLabel);
             this.chatGroupBox.Controls.Add(this.chatCustNameLabel);
             this.chatGroupBox.Controls.Add(this.chatCustIdLabel);
-            this.chatGroupBox.Location = new System.Drawing.Point(13, 31);
+            this.chatGroupBox.Location = new System.Drawing.Point(13, 40);
             this.chatGroupBox.Name = "chatGroupBox";
-            this.chatGroupBox.Size = new System.Drawing.Size(397, 307);
+            this.chatGroupBox.Size = new System.Drawing.Size(397, 337);
             this.chatGroupBox.TabIndex = 0;
             this.chatGroupBox.TabStop = false;
             this.chatGroupBox.Text = "Chat Window";
@@ -112,7 +110,7 @@
             this.chatResetButton.Location = new System.Drawing.Point(132, 137);
             this.chatResetButton.Name = "chatResetButton";
             this.chatResetButton.Size = new System.Drawing.Size(133, 45);
-            this.chatResetButton.TabIndex = 9;
+            this.chatResetButton.TabIndex = 14;
             this.chatResetButton.Text = "Reset/Clear Positions";
             this.chatResetButton.UseVisualStyleBackColor = true;
             this.chatResetButton.Click += new System.EventHandler(this.chatResetButton_Click);
@@ -122,7 +120,7 @@
             this.chatProblemSelectButton.Location = new System.Drawing.Point(306, 93);
             this.chatProblemSelectButton.Name = "chatProblemSelectButton";
             this.chatProblemSelectButton.Size = new System.Drawing.Size(75, 23);
-            this.chatProblemSelectButton.TabIndex = 8;
+            this.chatProblemSelectButton.TabIndex = 13;
             this.chatProblemSelectButton.Text = "Select";
             this.chatProblemSelectButton.UseVisualStyleBackColor = true;
             this.chatProblemSelectButton.Click += new System.EventHandler(this.chatProblemSelectButton_Click);
@@ -132,7 +130,7 @@
             this.chatCustNameSelectButton.Location = new System.Drawing.Point(306, 63);
             this.chatCustNameSelectButton.Name = "chatCustNameSelectButton";
             this.chatCustNameSelectButton.Size = new System.Drawing.Size(75, 23);
-            this.chatCustNameSelectButton.TabIndex = 5;
+            this.chatCustNameSelectButton.TabIndex = 12;
             this.chatCustNameSelectButton.Text = "Select";
             this.chatCustNameSelectButton.UseVisualStyleBackColor = true;
             this.chatCustNameSelectButton.Click += new System.EventHandler(this.chatCustNameSelectButton_Click);
@@ -142,7 +140,7 @@
             this.chatCustIdSelectButton.Location = new System.Drawing.Point(306, 33);
             this.chatCustIdSelectButton.Name = "chatCustIdSelectButton";
             this.chatCustIdSelectButton.Size = new System.Drawing.Size(75, 23);
-            this.chatCustIdSelectButton.TabIndex = 2;
+            this.chatCustIdSelectButton.TabIndex = 11;
             this.chatCustIdSelectButton.Text = "Select";
             this.chatCustIdSelectButton.UseVisualStyleBackColor = true;
             this.chatCustIdSelectButton.Click += new System.EventHandler(this.chatCustIdSelectButton_Click);
@@ -169,49 +167,43 @@
             // 
             this.chatProblemYTextBox.Location = new System.Drawing.Point(200, 95);
             this.chatProblemYTextBox.Name = "chatProblemYTextBox";
-            this.chatProblemYTextBox.ReadOnly = true;
             this.chatProblemYTextBox.Size = new System.Drawing.Size(100, 20);
-            this.chatProblemYTextBox.TabIndex = 7;
+            this.chatProblemYTextBox.TabIndex = 8;
             // 
             // chatProblemXTextBox
             // 
             this.chatProblemXTextBox.Location = new System.Drawing.Point(94, 95);
             this.chatProblemXTextBox.Name = "chatProblemXTextBox";
-            this.chatProblemXTextBox.ReadOnly = true;
             this.chatProblemXTextBox.Size = new System.Drawing.Size(100, 20);
-            this.chatProblemXTextBox.TabIndex = 6;
+            this.chatProblemXTextBox.TabIndex = 7;
             // 
             // chatCustNameYTextBox
             // 
             this.chatCustNameYTextBox.Location = new System.Drawing.Point(200, 65);
             this.chatCustNameYTextBox.Name = "chatCustNameYTextBox";
-            this.chatCustNameYTextBox.ReadOnly = true;
             this.chatCustNameYTextBox.Size = new System.Drawing.Size(100, 20);
-            this.chatCustNameYTextBox.TabIndex = 4;
+            this.chatCustNameYTextBox.TabIndex = 6;
             // 
             // chatCustNameXTextBox
             // 
             this.chatCustNameXTextBox.Location = new System.Drawing.Point(94, 65);
             this.chatCustNameXTextBox.Name = "chatCustNameXTextBox";
-            this.chatCustNameXTextBox.ReadOnly = true;
             this.chatCustNameXTextBox.Size = new System.Drawing.Size(100, 20);
-            this.chatCustNameXTextBox.TabIndex = 3;
+            this.chatCustNameXTextBox.TabIndex = 5;
             // 
             // chatCustIdYTextBox
             // 
             this.chatCustIdYTextBox.Location = new System.Drawing.Point(200, 35);
             this.chatCustIdYTextBox.Name = "chatCustIdYTextBox";
-            this.chatCustIdYTextBox.ReadOnly = true;
             this.chatCustIdYTextBox.Size = new System.Drawing.Size(100, 20);
-            this.chatCustIdYTextBox.TabIndex = 1;
+            this.chatCustIdYTextBox.TabIndex = 4;
             // 
             // chatCustIdXTextBox
             // 
             this.chatCustIdXTextBox.Location = new System.Drawing.Point(94, 35);
             this.chatCustIdXTextBox.Name = "chatCustIdXTextBox";
-            this.chatCustIdXTextBox.ReadOnly = true;
             this.chatCustIdXTextBox.Size = new System.Drawing.Size(100, 20);
-            this.chatCustIdXTextBox.TabIndex = 0;
+            this.chatCustIdXTextBox.TabIndex = 3;
             // 
             // chatProblemLabel
             // 
@@ -246,10 +238,10 @@
             this.callsheetGroupBox.Controls.Add(this.callsheetInProgressLabel);
             this.callsheetGroupBox.Controls.Add(this.callsheetInProgressYTextBox);
             this.callsheetGroupBox.Controls.Add(this.callsheetInProgressXTextBox);
-            this.callsheetGroupBox.Controls.Add(this.callsheetResultSelectButton);
-            this.callsheetGroupBox.Controls.Add(this.callsheetResultLabel);
-            this.callsheetGroupBox.Controls.Add(this.callsheetResultYTextBox);
-            this.callsheetGroupBox.Controls.Add(this.callsheetResultXTextBox);
+            this.callsheetGroupBox.Controls.Add(this.callsheetResetSelectButton);
+            this.callsheetGroupBox.Controls.Add(this.callsheetResetLabel);
+            this.callsheetGroupBox.Controls.Add(this.callsheetResetYTextBox);
+            this.callsheetGroupBox.Controls.Add(this.callsheetResetXTextBox);
             this.callsheetGroupBox.Controls.Add(this.callsheetNewSelectButton);
             this.callsheetGroupBox.Controls.Add(this.callsheetNewLabel);
             this.callsheetGroupBox.Controls.Add(this.callsheetNewYTextBox);
@@ -273,19 +265,19 @@
             this.callsheetGroupBox.Controls.Add(this.callsheetCustNameXTextBox);
             this.callsheetGroupBox.Controls.Add(this.callsheetProblemXTextBox);
             this.callsheetGroupBox.Controls.Add(this.callsheetCustNameYTextBox);
-            this.callsheetGroupBox.Location = new System.Drawing.Point(425, 31);
+            this.callsheetGroupBox.Location = new System.Drawing.Point(425, 40);
             this.callsheetGroupBox.Name = "callsheetGroupBox";
-            this.callsheetGroupBox.Size = new System.Drawing.Size(397, 307);
+            this.callsheetGroupBox.Size = new System.Drawing.Size(397, 337);
             this.callsheetGroupBox.TabIndex = 1;
             this.callsheetGroupBox.TabStop = false;
             this.callsheetGroupBox.Text = "Callsheet Window";
             // 
             // callsheetInProgressSelectButton
             // 
-            this.callsheetInProgressSelectButton.Location = new System.Drawing.Point(305, 149);
+            this.callsheetInProgressSelectButton.Location = new System.Drawing.Point(305, 119);
             this.callsheetInProgressSelectButton.Name = "callsheetInProgressSelectButton";
             this.callsheetInProgressSelectButton.Size = new System.Drawing.Size(75, 23);
-            this.callsheetInProgressSelectButton.TabIndex = 14;
+            this.callsheetInProgressSelectButton.TabIndex = 41;
             this.callsheetInProgressSelectButton.Text = "Select";
             this.callsheetInProgressSelectButton.UseVisualStyleBackColor = true;
             this.callsheetInProgressSelectButton.Click += new System.EventHandler(this.callsheetInProgressSelectButton_Click);
@@ -293,7 +285,7 @@
             // callsheetInProgressLabel
             // 
             this.callsheetInProgressLabel.AutoSize = true;
-            this.callsheetInProgressLabel.Location = new System.Drawing.Point(6, 154);
+            this.callsheetInProgressLabel.Location = new System.Drawing.Point(6, 124);
             this.callsheetInProgressLabel.Name = "callsheetInProgressLabel";
             this.callsheetInProgressLabel.Size = new System.Drawing.Size(60, 13);
             this.callsheetInProgressLabel.TabIndex = 38;
@@ -301,61 +293,57 @@
             // 
             // callsheetInProgressYTextBox
             // 
-            this.callsheetInProgressYTextBox.Location = new System.Drawing.Point(199, 151);
+            this.callsheetInProgressYTextBox.Location = new System.Drawing.Point(199, 121);
             this.callsheetInProgressYTextBox.Name = "callsheetInProgressYTextBox";
-            this.callsheetInProgressYTextBox.ReadOnly = true;
             this.callsheetInProgressYTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetInProgressYTextBox.TabIndex = 13;
+            this.callsheetInProgressYTextBox.TabIndex = 40;
             // 
             // callsheetInProgressXTextBox
             // 
-            this.callsheetInProgressXTextBox.Location = new System.Drawing.Point(93, 151);
+            this.callsheetInProgressXTextBox.Location = new System.Drawing.Point(93, 121);
             this.callsheetInProgressXTextBox.Name = "callsheetInProgressXTextBox";
-            this.callsheetInProgressXTextBox.ReadOnly = true;
             this.callsheetInProgressXTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetInProgressXTextBox.TabIndex = 12;
+            this.callsheetInProgressXTextBox.TabIndex = 39;
             // 
-            // callsheetResultSelectButton
+            // callsheetResetSelectButton
             // 
-            this.callsheetResultSelectButton.Location = new System.Drawing.Point(305, 120);
-            this.callsheetResultSelectButton.Name = "callsheetResultSelectButton";
-            this.callsheetResultSelectButton.Size = new System.Drawing.Size(75, 23);
-            this.callsheetResultSelectButton.TabIndex = 11;
-            this.callsheetResultSelectButton.Text = "Select";
-            this.callsheetResultSelectButton.UseVisualStyleBackColor = true;
-            this.callsheetResultSelectButton.Click += new System.EventHandler(this.callsheetResultSelectButton_Click);
+            this.callsheetResetSelectButton.Location = new System.Drawing.Point(305, 206);
+            this.callsheetResetSelectButton.Name = "callsheetResetSelectButton";
+            this.callsheetResetSelectButton.Size = new System.Drawing.Size(75, 23);
+            this.callsheetResetSelectButton.TabIndex = 37;
+            this.callsheetResetSelectButton.Text = "Select";
+            this.callsheetResetSelectButton.UseVisualStyleBackColor = true;
+            this.callsheetResetSelectButton.Click += new System.EventHandler(this.callsheetResetSelectButton_Click);
             // 
-            // callsheetResultLabel
+            // callsheetResetLabel
             // 
-            this.callsheetResultLabel.AutoSize = true;
-            this.callsheetResultLabel.Location = new System.Drawing.Point(6, 125);
-            this.callsheetResultLabel.Name = "callsheetResultLabel";
-            this.callsheetResultLabel.Size = new System.Drawing.Size(37, 13);
-            this.callsheetResultLabel.TabIndex = 34;
-            this.callsheetResultLabel.Text = "Result";
+            this.callsheetResetLabel.AutoSize = true;
+            this.callsheetResetLabel.Location = new System.Drawing.Point(6, 211);
+            this.callsheetResetLabel.Name = "callsheetResetLabel";
+            this.callsheetResetLabel.Size = new System.Drawing.Size(35, 13);
+            this.callsheetResetLabel.TabIndex = 34;
+            this.callsheetResetLabel.Text = "Reset";
             // 
-            // callsheetResultYTextBox
+            // callsheetResetYTextBox
             // 
-            this.callsheetResultYTextBox.Location = new System.Drawing.Point(199, 122);
-            this.callsheetResultYTextBox.Name = "callsheetResultYTextBox";
-            this.callsheetResultYTextBox.ReadOnly = true;
-            this.callsheetResultYTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetResultYTextBox.TabIndex = 10;
+            this.callsheetResetYTextBox.Location = new System.Drawing.Point(199, 208);
+            this.callsheetResetYTextBox.Name = "callsheetResetYTextBox";
+            this.callsheetResetYTextBox.Size = new System.Drawing.Size(100, 20);
+            this.callsheetResetYTextBox.TabIndex = 36;
             // 
-            // callsheetResultXTextBox
+            // callsheetResetXTextBox
             // 
-            this.callsheetResultXTextBox.Location = new System.Drawing.Point(93, 122);
-            this.callsheetResultXTextBox.Name = "callsheetResultXTextBox";
-            this.callsheetResultXTextBox.ReadOnly = true;
-            this.callsheetResultXTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetResultXTextBox.TabIndex = 9;
+            this.callsheetResetXTextBox.Location = new System.Drawing.Point(93, 208);
+            this.callsheetResetXTextBox.Name = "callsheetResetXTextBox";
+            this.callsheetResetXTextBox.Size = new System.Drawing.Size(100, 20);
+            this.callsheetResetXTextBox.TabIndex = 35;
             // 
             // callsheetNewSelectButton
             // 
-            this.callsheetNewSelectButton.Location = new System.Drawing.Point(305, 207);
+            this.callsheetNewSelectButton.Location = new System.Drawing.Point(305, 177);
             this.callsheetNewSelectButton.Name = "callsheetNewSelectButton";
             this.callsheetNewSelectButton.Size = new System.Drawing.Size(75, 23);
-            this.callsheetNewSelectButton.TabIndex = 20;
+            this.callsheetNewSelectButton.TabIndex = 33;
             this.callsheetNewSelectButton.Text = "Select";
             this.callsheetNewSelectButton.UseVisualStyleBackColor = true;
             this.callsheetNewSelectButton.Click += new System.EventHandler(this.callsheetNewSelectButton_Click);
@@ -363,7 +351,7 @@
             // callsheetNewLabel
             // 
             this.callsheetNewLabel.AutoSize = true;
-            this.callsheetNewLabel.Location = new System.Drawing.Point(6, 212);
+            this.callsheetNewLabel.Location = new System.Drawing.Point(6, 182);
             this.callsheetNewLabel.Name = "callsheetNewLabel";
             this.callsheetNewLabel.Size = new System.Drawing.Size(29, 13);
             this.callsheetNewLabel.TabIndex = 30;
@@ -371,26 +359,24 @@
             // 
             // callsheetNewYTextBox
             // 
-            this.callsheetNewYTextBox.Location = new System.Drawing.Point(199, 209);
+            this.callsheetNewYTextBox.Location = new System.Drawing.Point(199, 179);
             this.callsheetNewYTextBox.Name = "callsheetNewYTextBox";
-            this.callsheetNewYTextBox.ReadOnly = true;
             this.callsheetNewYTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetNewYTextBox.TabIndex = 19;
+            this.callsheetNewYTextBox.TabIndex = 32;
             // 
             // callsheetNewXTextBox
             // 
-            this.callsheetNewXTextBox.Location = new System.Drawing.Point(93, 209);
+            this.callsheetNewXTextBox.Location = new System.Drawing.Point(93, 179);
             this.callsheetNewXTextBox.Name = "callsheetNewXTextBox";
-            this.callsheetNewXTextBox.ReadOnly = true;
             this.callsheetNewXTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetNewXTextBox.TabIndex = 18;
+            this.callsheetNewXTextBox.TabIndex = 31;
             // 
             // callsheetSaveSelectButton
             // 
-            this.callsheetSaveSelectButton.Location = new System.Drawing.Point(305, 178);
+            this.callsheetSaveSelectButton.Location = new System.Drawing.Point(305, 148);
             this.callsheetSaveSelectButton.Name = "callsheetSaveSelectButton";
             this.callsheetSaveSelectButton.Size = new System.Drawing.Size(75, 23);
-            this.callsheetSaveSelectButton.TabIndex = 17;
+            this.callsheetSaveSelectButton.TabIndex = 29;
             this.callsheetSaveSelectButton.Text = "Select";
             this.callsheetSaveSelectButton.UseVisualStyleBackColor = true;
             this.callsheetSaveSelectButton.Click += new System.EventHandler(this.callsheetSaveSelectButton_Click);
@@ -398,7 +384,7 @@
             // callsheetSaveLabel
             // 
             this.callsheetSaveLabel.AutoSize = true;
-            this.callsheetSaveLabel.Location = new System.Drawing.Point(6, 183);
+            this.callsheetSaveLabel.Location = new System.Drawing.Point(6, 153);
             this.callsheetSaveLabel.Name = "callsheetSaveLabel";
             this.callsheetSaveLabel.Size = new System.Drawing.Size(32, 13);
             this.callsheetSaveLabel.TabIndex = 26;
@@ -406,26 +392,24 @@
             // 
             // callsheetSaveYTextBox
             // 
-            this.callsheetSaveYTextBox.Location = new System.Drawing.Point(199, 180);
+            this.callsheetSaveYTextBox.Location = new System.Drawing.Point(199, 150);
             this.callsheetSaveYTextBox.Name = "callsheetSaveYTextBox";
-            this.callsheetSaveYTextBox.ReadOnly = true;
             this.callsheetSaveYTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetSaveYTextBox.TabIndex = 16;
+            this.callsheetSaveYTextBox.TabIndex = 28;
             // 
             // callsheetSaveXTextBox
             // 
-            this.callsheetSaveXTextBox.Location = new System.Drawing.Point(93, 180);
+            this.callsheetSaveXTextBox.Location = new System.Drawing.Point(93, 150);
             this.callsheetSaveXTextBox.Name = "callsheetSaveXTextBox";
-            this.callsheetSaveXTextBox.ReadOnly = true;
             this.callsheetSaveXTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetSaveXTextBox.TabIndex = 15;
+            this.callsheetSaveXTextBox.TabIndex = 27;
             // 
             // callsheetResetButton
             // 
-            this.callsheetResetButton.Location = new System.Drawing.Point(132, 250);
+            this.callsheetResetButton.Location = new System.Drawing.Point(132, 286);
             this.callsheetResetButton.Name = "callsheetResetButton";
             this.callsheetResetButton.Size = new System.Drawing.Size(133, 45);
-            this.callsheetResetButton.TabIndex = 21;
+            this.callsheetResetButton.TabIndex = 15;
             this.callsheetResetButton.Text = "Reset/Clear Positions";
             this.callsheetResetButton.UseVisualStyleBackColor = true;
             this.callsheetResetButton.Click += new System.EventHandler(this.callsheetResetButton_Click);
@@ -435,7 +419,7 @@
             this.callsheetProblemSelectButton.Location = new System.Drawing.Point(305, 91);
             this.callsheetProblemSelectButton.Name = "callsheetProblemSelectButton";
             this.callsheetProblemSelectButton.Size = new System.Drawing.Size(75, 23);
-            this.callsheetProblemSelectButton.TabIndex = 8;
+            this.callsheetProblemSelectButton.TabIndex = 25;
             this.callsheetProblemSelectButton.Text = "Select";
             this.callsheetProblemSelectButton.UseVisualStyleBackColor = true;
             this.callsheetProblemSelectButton.Click += new System.EventHandler(this.callsheetProblemSelectButton_Click);
@@ -454,7 +438,7 @@
             this.callsheetCustNameSelectButton.Location = new System.Drawing.Point(305, 62);
             this.callsheetCustNameSelectButton.Name = "callsheetCustNameSelectButton";
             this.callsheetCustNameSelectButton.Size = new System.Drawing.Size(75, 23);
-            this.callsheetCustNameSelectButton.TabIndex = 5;
+            this.callsheetCustNameSelectButton.TabIndex = 24;
             this.callsheetCustNameSelectButton.Text = "Select";
             this.callsheetCustNameSelectButton.UseVisualStyleBackColor = true;
             this.callsheetCustNameSelectButton.Click += new System.EventHandler(this.callsheetCustNameSelectButton_Click);
@@ -473,7 +457,7 @@
             this.callsheetCustIdSelectButton.Location = new System.Drawing.Point(305, 33);
             this.callsheetCustIdSelectButton.Name = "callsheetCustIdSelectButton";
             this.callsheetCustIdSelectButton.Size = new System.Drawing.Size(75, 23);
-            this.callsheetCustIdSelectButton.TabIndex = 2;
+            this.callsheetCustIdSelectButton.TabIndex = 23;
             this.callsheetCustIdSelectButton.Text = "Select";
             this.callsheetCustIdSelectButton.UseVisualStyleBackColor = true;
             this.callsheetCustIdSelectButton.Click += new System.EventHandler(this.callsheetCustIdSelectButton_Click);
@@ -500,9 +484,8 @@
             // 
             this.callsheetCustIdXTextBox.Location = new System.Drawing.Point(93, 35);
             this.callsheetCustIdXTextBox.Name = "callsheetCustIdXTextBox";
-            this.callsheetCustIdXTextBox.ReadOnly = true;
             this.callsheetCustIdXTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetCustIdXTextBox.TabIndex = 0;
+            this.callsheetCustIdXTextBox.TabIndex = 15;
             // 
             // callsheetXLabel
             // 
@@ -517,41 +500,36 @@
             // 
             this.callsheetCustIdYTextBox.Location = new System.Drawing.Point(199, 35);
             this.callsheetCustIdYTextBox.Name = "callsheetCustIdYTextBox";
-            this.callsheetCustIdYTextBox.ReadOnly = true;
             this.callsheetCustIdYTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetCustIdYTextBox.TabIndex = 1;
+            this.callsheetCustIdYTextBox.TabIndex = 16;
             // 
             // callsheetProblemYTextBox
             // 
             this.callsheetProblemYTextBox.Location = new System.Drawing.Point(199, 93);
             this.callsheetProblemYTextBox.Name = "callsheetProblemYTextBox";
-            this.callsheetProblemYTextBox.ReadOnly = true;
             this.callsheetProblemYTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetProblemYTextBox.TabIndex = 7;
+            this.callsheetProblemYTextBox.TabIndex = 20;
             // 
             // callsheetCustNameXTextBox
             // 
             this.callsheetCustNameXTextBox.Location = new System.Drawing.Point(93, 64);
             this.callsheetCustNameXTextBox.Name = "callsheetCustNameXTextBox";
-            this.callsheetCustNameXTextBox.ReadOnly = true;
             this.callsheetCustNameXTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetCustNameXTextBox.TabIndex = 3;
+            this.callsheetCustNameXTextBox.TabIndex = 17;
             // 
             // callsheetProblemXTextBox
             // 
             this.callsheetProblemXTextBox.Location = new System.Drawing.Point(93, 93);
             this.callsheetProblemXTextBox.Name = "callsheetProblemXTextBox";
-            this.callsheetProblemXTextBox.ReadOnly = true;
             this.callsheetProblemXTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetProblemXTextBox.TabIndex = 6;
+            this.callsheetProblemXTextBox.TabIndex = 19;
             // 
             // callsheetCustNameYTextBox
             // 
             this.callsheetCustNameYTextBox.Location = new System.Drawing.Point(199, 64);
             this.callsheetCustNameYTextBox.Name = "callsheetCustNameYTextBox";
-            this.callsheetCustNameYTextBox.ReadOnly = true;
             this.callsheetCustNameYTextBox.Size = new System.Drawing.Size(100, 20);
-            this.callsheetCustNameYTextBox.TabIndex = 4;
+            this.callsheetCustNameYTextBox.TabIndex = 18;
             // 
             // menuStrip1
             // 
@@ -566,59 +544,43 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveToolStripMenuItem,
             this.helpToolStripMenuItem,
-            this.exitToolStripMenuItem,
-            this.exitToolStripMenuItem1});
+            this.helpToolStripMenuItem1,
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.helpToolStripMenuItem.Text = "Help";
-            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.helpToolStripMenuItem.Text = "Save";
+            // 
+            // helpToolStripMenuItem1
+            // 
+            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.helpToolStripMenuItem1.Text = "Help";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.exitToolStripMenuItem.Text = "About";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // exitToolStripMenuItem1
-            // 
-            this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
-            this.exitToolStripMenuItem1.Text = "Exit";
-            this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
             // 
             // SetupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 346);
+            this.ClientSize = new System.Drawing.Size(834, 385);
             this.Controls.Add(this.callsheetGroupBox);
             this.Controls.Add(this.chatGroupBox);
             this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
             this.Name = "SetupForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SetupForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SetupForm_FormClosing);
-            this.Load += new System.EventHandler(this.SetupForm_Load);
+            this.Text = "Setup Mouse Coordinates";
             this.chatGroupBox.ResumeLayout(false);
             this.chatGroupBox.PerformLayout();
             this.callsheetGroupBox.ResumeLayout(false);
@@ -664,10 +626,10 @@
         private System.Windows.Forms.TextBox callsheetCustNameXTextBox;
         private System.Windows.Forms.TextBox callsheetProblemXTextBox;
         private System.Windows.Forms.TextBox callsheetCustNameYTextBox;
-        private System.Windows.Forms.Button callsheetResultSelectButton;
-        private System.Windows.Forms.Label callsheetResultLabel;
-        private System.Windows.Forms.TextBox callsheetResultYTextBox;
-        private System.Windows.Forms.TextBox callsheetResultXTextBox;
+        private System.Windows.Forms.Button callsheetResetSelectButton;
+        private System.Windows.Forms.Label callsheetResetLabel;
+        private System.Windows.Forms.TextBox callsheetResetYTextBox;
+        private System.Windows.Forms.TextBox callsheetResetXTextBox;
         private System.Windows.Forms.Button callsheetNewSelectButton;
         private System.Windows.Forms.Label callsheetNewLabel;
         private System.Windows.Forms.TextBox callsheetNewYTextBox;
@@ -682,9 +644,8 @@
         private System.Windows.Forms.TextBox callsheetInProgressXTextBox;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
