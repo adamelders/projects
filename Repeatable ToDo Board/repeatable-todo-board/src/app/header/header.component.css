@@ -1,0 +1,16 @@
+.header-container {
+  width: 100%;
+  background: #1c1f20;
+  padding: 1rem;
+}
+
+a.logo {
+  color: #3ec2ee;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+a.logo:hover {
+  color: #bce8f7;
+}
